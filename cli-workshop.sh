@@ -4,9 +4,13 @@
 prev_pwd=`pwd`
 
 # navigating
+
+# behold the power of <tab>
+
 pwd
 ls
-#tree
+tree
+tree -d
 cd folder1
 cd ../
 cd ./
@@ -16,14 +20,15 @@ ls
 cd ../../../../
 cd $prev_pwd/folder1/
 cd /
-pwd
+ls
 cd
 cd ~
+cd $prev_pwd
 cd folder1/inside
 ls
 cd more-inside/most-inside
 cd ../../also-inside/very-inside
-cd $prev_pwd
+cd ../../../../
 
 # manipulating files
 mkdir new-folder
@@ -46,6 +51,8 @@ cat old-file
 
 echo
 
+cd ../
+
 # command options
 ls -l
 ls -r
@@ -57,13 +64,16 @@ man man
 
 # job control
 
-sleep 20
-# ctrl+z
-jobs
-bg
-jobs
-fg
-jobs
+# (doesn't work in script)
+
+# sleep 20
+# # ctrl+z
+# jobs
+# bg
+# jobs
+# fg
+# jobs
+# # ctrl+c
 
 # plain text files and utilities
 nano new-file
@@ -101,7 +111,7 @@ tty
 echo "This is an echoed message" > `tty`
 
 ./erroring-script.sh
-./erroring-script.sh | grep -v Error
+./erroring-script.sh | grep -v error
 ./erroring-script.sh 2> /dev/null
 ./erroring-script.sh 1> file-output
 ./erroring-script.sh 2> /dev/null 1> file-output
@@ -112,6 +122,7 @@ echo "This is an echoed message" > `tty`
 # for more fun
 
 cd globbing
+ls
 echo *.text
 echo *.image
 ls *.text
@@ -126,9 +137,11 @@ ls a1?.text
 ls a??.text
 ls b?.text
 ls {a,b}*.text
-ls {a,b}*.text
-ls a{1..3}
+ls {a,b}?.text
+ls {a,b}??.text
+ls a{1..3}.text
 ls {a,b}{1..15}.text
+ls {a,b}{1..15}.text 2>/dev/null
 ls [a-c]*.text
 ls [^d]*.text
 echo ~
@@ -161,11 +174,11 @@ echo ${f#*-}
 
 # shell scripts
 
-for thing in item1 item2 item3 ; do echo $thing done
-for i in {1..5} ; do echo $i done
+for thing in item1 item2 item3 ; do echo $thing ; done
+for i in {1..5} ; do echo $i ; done
 cd globbing
-for i in {1..5} ; do echo mv $i ${i%.text}.image done
-for i in *.text ; do echo mv $i ${i%.text}.image done
+for i in {1..5} ; do echo mv a$i.text a${i}.image ; done
+for i in *.text ; do echo mv $i ${i%.text}.image ; done
 
-echo -e '#!/bin/bash\nfor i in *.text ; do echo mv $i ${i%.text}.image done' > convert-text-to-img.sh
+echo -e '#!/bin/bash\nfor i in *.text ; do mv $i ${i%.text}.image ; done' > convert-text-to-img.sh
 chmod +x convert-text-to-img.sh
