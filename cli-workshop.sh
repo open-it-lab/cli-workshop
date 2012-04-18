@@ -3,9 +3,14 @@
 ./setup.sh
 prev_pwd=`pwd`
 
-# navigating
+# getting started/tour
 
 # behold the power of <tab>
+cal
+data
+# mplayer
+
+# navigating
 
 pwd
 ls
@@ -171,6 +176,7 @@ echo ${f#*-}
 
 # remote access
 # ssh, scp
+wget https://raw.github.com/open-it-lab/cli-workshop/master/cli-workshop.sh
 
 # shell scripts
 
@@ -182,3 +188,21 @@ for i in *.text ; do echo mv $i ${i%.text}.image ; done
 
 echo -e '#!/bin/bash\nfor i in *.text ; do mv $i ${i%.text}.image ; done' > convert-text-to-img.sh
 chmod +x convert-text-to-img.sh
+
+# links
+# http://www.ee.surrey.ac.uk/Teaching/Unix/
+# http://linuxcommand.org/learning_the_shell.php
+# http://www.pixelbeat.org/cmdline.html
+# http://www.commandlinefu.com
+
+# manuals/reference
+# http://www.digilife.be/quickreferences/QRC/The%20One%20Page%20Linux%20Manual.pdf
+# http://www.rain.org/~mkummel/unix.html
+
+# wearable manuals/reference
+# http://store.xkcd.com/xkcd/#LinuxCheatShirt
+
+# advanced links
+# http://freeengineer.org/learnUNIXin10minutes.html
+# http://www.cs.usfca.edu/~parrt/course/601/lectures/unix.util.html
+# http://cb.vu/unixtoolbox.xhtml
