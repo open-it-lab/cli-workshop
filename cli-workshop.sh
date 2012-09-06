@@ -86,11 +86,14 @@ cat new-file
 cat more-lines
 cat few-lines
 cat more-lines few-lines
+# number of lines, words, & bytes
 wc more-lines
 wc few-lines
+# just lines (-c is just bytes)
 wc -l more-lines
 sort more-lines
 uniq more-lines
+# ignore case
 uniq -i more-lines
 head -1 more-lines
 head -2 more-lines
@@ -98,9 +101,11 @@ head -5 more-lines
 tail -1 more-lines
 tail -5 more-lines
 grep very more-lines
+# -v does the opposite
 grep -v very more-lines
 grep lines more-lines
 grep lines more-lines few-lines
+# -n tells you the line number
 grep -n lines more-lines few-lines
 grep -i -v very more-lines
 
@@ -120,6 +125,7 @@ echo "This is an echoed message" > `tty`
 ./erroring-script.sh 2> /dev/null
 ./erroring-script.sh 1> file-output
 ./erroring-script.sh 2> /dev/null 1> file-output
+./erroring-script.sh >& file-output
 
 # globbing
 
@@ -128,27 +134,27 @@ echo "This is an echoed message" > `tty`
 
 cd globbing
 ls
-echo *.text
-echo *.image
-ls *.text
-ls *.image
-ls -l *.text
-ls -l *.image
+echo *.txt
+echo *.jpg
+ls *.txt
+ls *.jpg
+ls -l *.txt
+ls -l *.jpg
 ls a*
 ls b*
 ls *1*
-ls a1*.text
-ls a1?.text
-ls a??.text
-ls b?.text
-ls {a,b}*.text
-ls {a,b}?.text
-ls {a,b}??.text
-ls a{1..3}.text
-ls {a,b}{1..15}.text
-ls {a,b}{1..15}.text 2>/dev/null
-ls [a-c]*.text
-ls [^d]*.text
+ls a1*.txt
+ls a1?.txt
+ls a??.txt
+ls b?.txt
+ls {a,b}*.txt
+ls {a,b}?.txt
+ls {a,b}??.txt
+ls a{1..3}.txt
+ls {a,b}{1..15}.txt
+ls {a,b}{1..15}.txt 2>/dev/null
+ls [a-c]*.txt
+ls [^d]*.txt
 echo ~
 
 cd ../
@@ -169,7 +175,7 @@ echo $f
 echo ${f:9}
 echo ${f:9:5}
 echo ${f%.sh}
-echo ${f%.text}
+echo ${f%.txt}
 echo ${f%.*}
 echo ${f#erroring-}
 echo ${f#*-}
@@ -183,10 +189,10 @@ wget https://raw.github.com/open-it-lab/cli-workshop/master/cli-workshop.sh
 for thing in item1 item2 item3 ; do echo $thing ; done
 for i in {1..5} ; do echo $i ; done
 cd globbing
-for i in {1..5} ; do echo mv a$i.text a${i}.image ; done
-for i in *.text ; do echo mv $i ${i%.text}.image ; done
+for i in {1..5} ; do echo mv a$i.txt a${i}.jpg ; done
+for i in *.txt ; do echo mv $i ${i%.txt}.jpg ; done
 
-echo -e '#!/bin/bash\nfor i in *.text ; do mv $i ${i%.text}.image ; done' > convert-text-to-img.sh
+echo -e '#!/bin/bash\nfor i in *.txt ; do mv $i ${i%.txt}.jpg ; done' > convert-text-to-img.sh
 chmod +x convert-text-to-img.sh
 
 # links
