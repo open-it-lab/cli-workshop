@@ -7,7 +7,7 @@ prev_pwd=`pwd`
 
 # behold the power of <tab>
 cal
-data
+date
 # mplayer
 
 # navigating
